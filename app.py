@@ -68,7 +68,7 @@ def classify_product(row):
     p_name = str(row.get(INPUT_MAPPING["name"], "")).lower().strip()
     stock_status = str(row.get("物料型態", "")).lower()
     
-    main_cat = "核酸萃取"
+    main_cat = "萃取萃取"
     sub_cat = ""
 
     # 1. 物料型態判斷
@@ -77,23 +77,23 @@ def classify_product(row):
 
     # 2. 關鍵字判斷
     if "extraction" in p_name or "cartridge" in p_name:
-        main_cat = "核酸萃取"
+        main_cat = "萃取萃取"
     elif any(x in p_name for x in ["pockit", "iq", "dntp", "enzyme", "trehalose", "sedingin", "camap"]):
-        main_cat = "配方試劑"
+        main_cat = "檢驗試劑"
     elif "taco" in p_name:
-        main_cat = "核酸萃取"
+        main_cat = "萃取試劑"
     elif "ivd" in p_name:
         main_cat = "IVD"
     
     # 3. 次分類判斷
-    if main_cat == "核酸萃取":
+    if main_cat == "萃取試劑":
         if "cartridge" in p_name:
             sub_cat = "POCKIT Central (相關)"
         elif "extraction" in p_name:
-            sub_cat = "核酸萃取"
+            sub_cat = "萃取試劑"
         else:
-            sub_cat = "核酸萃取" 
-    elif main_cat == "配方試劑":
+            sub_cat = "萃取試劑" 
+    elif main_cat == "檢驗試劑":
         if any(x in p_name for x in ["enzyme", "dntp", "iq plus", "pockit"]):
             sub_cat = "IQ Plus、POCKIT"
         elif "pockit central" in p_name or "sedingin" in p_name:
@@ -170,8 +170,8 @@ def process_data(df):
 # 3. Streamlit UI
 # ==========================================
 
-st.set_page_config(page_title="製造命令處理工具", page_icon="🏭")
-st.title("🏭 製造命令單頭資料前處理")
+st.set_page_config(page_title="製造命令處理工具", page_icon="📃")
+st.title("📃 製造命令單頭資料前處理")
 
 # 側邊欄顯示 Log
 with st.sidebar:
